@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章详情：{{ detail_article.title }}</title>
+</head>
+<body>
+    <div>
+        <h1>{{ detail_article.title }}</h1>
+        {% for list in content_list %}
+        <p>
+            {{ list }}
+        </p>
+        {% endfor %}
+    </div>
+</body>
+</html>
