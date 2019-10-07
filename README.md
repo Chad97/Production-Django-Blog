@@ -63,7 +63,7 @@ wsgi.py	# 应用文件内容
 
 
 
-<img src="/Users/ruoduan/Library/Application Support/typora-user-images/image-20191006202526031.png" alt="image-20191006202526031" style="zoom:50%;" />
+<img src="img/django项目和应用.png" alt="django项目和应用" style="zoom:50%;" />
 
 
 
@@ -178,7 +178,7 @@ urlpatterns = [
    ...
    ```
 
-   <img src="/Users/ruoduan/Library/Application Support/typora-user-images/image-20191006214436401.png" alt="image-20191006214436401" style="zoom:50%;" />
+   <img src="img/路由.png" alt=路由 style="zoom:50%;" />
 
 ---
 
@@ -188,11 +188,13 @@ urlpatterns = [
 
 
 
-<img src="/Users/ruoduan/Library/Application Support/typora-user-images/image-20191006215040691.png" alt="image-模型层" style="zoom:33%;" />
 
 
+<img src="img/模型层0.png" alt="模型层" style="zoom:33%;" />
 
-<img src="/Users/ruoduan/Library/Application Support/typora-user-images/image-20191006215246868.png" alt="image-为什么需要模型层" style="zoom:33%;" />
+<img src="img/模型层1.png" alt="模型层" style="zoom:33%;" />
+
+
 
 - settings.py
 
