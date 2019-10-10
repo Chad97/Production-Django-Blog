@@ -375,5 +375,49 @@ def detail_index_page(request, article_id):
 
 
 
+### paginator 分页组件
+
+
+- 引入分页组件
+`from django.core.paginator import Paginator`
+
+```python
+#  文章首页
+def get_index_page(request):
+    page = request.GET.get('page')
+    next_page = None
+    if page:
+        page = int(page)
+    else:
+        page = 1
+
+    article_list = Article.objects.all()
+    # 参数2 为每页的数量
+    p = Paginator(article_list, 3)
+    #  总页数
+    print(p.num_pages)
+
+    # 防止超出报错
+    if page >= p.num_pages:
+        page = p.num_pages
+    elif page <= 1:
+        page = 1
+
+    # 获取第几页list
+    page_list = p.page(page)
+    # 最近5篇文章 倒序排序
+    top5_list = Article.objects.order_by('-publish_date')[:5]
+    return render(request,
+                  'blog/index.html',
+                  {
+                      'article_list': page_list,
+                      'page_num': range(1, p.num_pages + 1),
+                      'previous_page': page - 1,
+                      'next_page': page + 1,
+                      'top5_list': top5_list
+                  })
+```
+
+
 
 

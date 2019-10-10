@@ -3,6 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from blog.models import Article
+# 引入分页组件
+from django.core.paginator import Paginator
 
 def hello_wold(resquest):
     return HttpResponse('你好啊 python ! ')
@@ -27,20 +29,64 @@ def article_content(resquest):
 
 #  文章首页
 def get_index_page(request):
+    page = request.GET.get('page')
+    next_page = None
+    if page:
+        page = int(page)
+    else:
+        page = 1
+
     article_list = Article.objects.all()
+    # 参数2 为每页的数量
+    p = Paginator(article_list, 3)
+    #  总页数
+    print(p.num_pages)
+
+    # 防止超出报错
+    if page >= p.num_pages:
+        page = p.num_pages
+    elif page <= 1:
+        page = 1
+
+    # 获取第几页list
+    page_list = p.page(page)
+    # 最近5篇文章 倒序排序
+    top5_list = Article.objects.order_by('-publish_date')[:5]
     return render(request,
                   'blog/index.html',
-                  {'article_list': article_list}
-                  )
+                  {
+                      'article_list': page_list,
+                      'page_num': range(1, p.num_pages + 1),
+                      'previous_page': page - 1,
+                      'next_page': page + 1,
+                      'top5_list': top5_list
+                  })
 
 
 # 文章详情
 def detail_index_page(request, article_id):
     all_article = Article.objects.all()
     curr_article = None
-    for at in all_article:
+    previous_article = None
+    next_article = None
+    # previous_index = 0
+    # next_index = 0
+
+    for index, at in enumerate(all_article):
+        # if index == 0:
+        #     previous_index = 0
+        #     next_index = index + 1
+        # elif index == len(all_article) -1:
+        #     previous_index = index - 1
+        #     next_index = index
+        # else:
+        #     previous_index = index - 1
+        #     next_index = index + 1
+
         if at.article_id == article_id:
             curr_article = at
+            previous_article = all_article[0 if index == 0 else index - 1]
+            next_article = all_article[index if index == len(all_article) - 1 else index + 1 ]
             break
 
     content_list = curr_article.content.split('\n')
@@ -49,6 +95,7 @@ def detail_index_page(request, article_id):
                   'blog/detail.html',
                   {
                       'detail_article': curr_article,
-                      'content_list': content_list
-                  }
-                  )
+                      'content_list': content_list,
+                      'previous_article': previous_article,
+                      'next_article': next_article
+                  })
