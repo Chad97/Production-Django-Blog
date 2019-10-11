@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>母版和组件栗子</title>
+</head>
+<body>
+    <h3>母版和组件栗子</h3>
+    {% extends '../public/base.html' %}
+        {% block content1 %}
+            <h4>插入母版的内容1</h4>
+        {% endblock %}
+
+        {% block content2 %}
+        <h4>插入母版的内容2</h4>
+        {{ var_muban }}
+    {% endblock %}
+
+</body>
+</html>

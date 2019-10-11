@@ -6,6 +6,8 @@ from blog.models import Article
 # 引入分页组件
 from django.core.paginator import Paginator
 
+import json
+
 def hello_wold(resquest):
     return HttpResponse('你好啊 python ! ')
 
@@ -59,7 +61,9 @@ def get_index_page(request):
                       'page_num': range(1, p.num_pages + 1),
                       'previous_page': page - 1,
                       'next_page': page + 1,
-                      'top5_list': top5_list
+                      'top5_list': top5_list,
+                      # 传递数据给JavaScript 的 测试
+                      'testjson' : json.dumps({'aa':1, 'bb':2})
                   })
 
 
@@ -98,4 +102,15 @@ def detail_index_page(request, article_id):
                       'content_list': content_list,
                       'previous_article': previous_article,
                       'next_article': next_article
+                  })
+
+
+# 模板和组件测试页面
+def muban_page(request):
+    pass
+
+    return render(request,
+                  'blog/muban_test.html',
+                  {
+                    'var_muban ': '后端 data'
                   })

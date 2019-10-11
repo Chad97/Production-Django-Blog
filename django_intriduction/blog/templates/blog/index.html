@@ -21,7 +21,7 @@
                             <h3><a href="/blog/detail/{{ article.article_id }}">{{ article.title }}</a></h3>
                             <p>{{ article.publish_date }}</p>
                             <div>
-                                {{ article.brief_content }}        
+                                {{ article.brief_content }}
                             </div>
                         </li>
                         {% endfor %}
@@ -30,7 +30,7 @@
 
 
                 </div>
-                
+
                 <div class="col-md-3" role="main">
                     <h4>top 5 最近文章</h4>
                     {% for article in top5_list %}
@@ -65,5 +65,11 @@
         </div>
 
     </div>
+    {% block centent %}
+    <script type="text/javascript">
+        var List = {{ testjson|safe}};
+        console.log(List)
+    </script>
+    {% endblock %}
 </body>
 </html>

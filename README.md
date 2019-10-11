@@ -420,4 +420,45 @@ def get_index_page(request):
 
 
 
+### 母版和组件语法
+
+```tex
+# 把多个页面通用的部分提取出来 放在一个母版中
+# 其它的页面只需要继承 母版就可以
+
+# 使用步骤：( 继承的语句要放在第一行 )
+"""
+    1. 把公用的 HTML 部分拿出来 成为 母版，放到 xxx.html 中
+    2. 在 xxx.html中，通过定义 block，把每个页面不同的地方分出来
+    3. 在 其它页面中 先继承母版
+    4. 再 block 指定需要替换的母版位置
+
+# 可以使用多个 {% block page-main %}  来定义某些代码  {% endblock %}
+
+母版中：（定义的这一块是其它页面不同的地方）
+    {% block page-main %}   # page-main /page-css /page-js
+
+    {% endblock %}
+
+
+子版中：
+    {% extends 'big_boss.html' %}   # 第一行必须先写继承的母版
+
+    {% block page-main %}       # page-main /page-css /page-js
+        # 这两行之间是需要放的内容
+    {% endblock %}
+
+
+"""
+
+
+"""
+    组件：
+        在其它页面定义一个重复的 HTML 部分
+        通过组建来调用 这个重复的部分，减少代码的复用
+    语法：
+        {% include 'top.html' %}    （带引号的：'xxx.html'）
+
+"""
+```
 

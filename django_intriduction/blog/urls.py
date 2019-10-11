@@ -10,4 +10,5 @@ urlpatterns = [
     path('index', blog.views.get_index_page),
     # path('detail', blog.views.detail_index_page),
     path('detail/<int:article_id>', blog.views.detail_index_page),
+    path('muban', blog.views.muban_page)
 ]
