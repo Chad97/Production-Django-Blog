@@ -78,10 +78,21 @@ WSGI_APPLICATION = 'django_intriduction.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # 使用的数据库驱动
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # 数据库名字对应文件名
+        'ENGINE': 'django.db.backends.mysql',  # 使用的数据库驱动
+        'NAME': 'test',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',  # 使用的数据库驱动
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # 数据库名字对应文件名
+#     }
+# }
 
 
 # Password validation
