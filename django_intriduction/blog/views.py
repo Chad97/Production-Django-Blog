@@ -63,7 +63,7 @@ def get_index_page(request):
                       'next_page': page + 1,
                       'top5_list': top5_list,
                       # 传递数据给JavaScript 的 测试
-                      'testjson' : json.dumps({'aa':1, 'bb':2})
+                      'testjson': json.dumps({'aa':1, 'bb':2})
                   })
 
 
